@@ -1,5 +1,6 @@
 from typing import List
 
+from App.CombinationTree.NodeData import NodeData
 from App.Midas.MidasCombination import MidasCombination
 from App.Midas.MidasLoadCase import MidasLoadCase
 from App.Midas.MidasLoadCaseCollection import MidasLoadCaseCollection
@@ -7,7 +8,8 @@ from App.Midas.MidasLoadCaseCollection import MidasLoadCaseCollection
 
 class Converter:
     @staticmethod
-    def translate_combination_node_data_to_midas_combination(comb_node_data, name) -> List[MidasCombination]:
+    def comb_node_data_to_midas_combination(comb_node_data: List[List[NodeData]], name) -> List[MidasCombination]:
+        print('Converting combination node data to midas combination...')
         midas_combs = []
         counter = 1
         for comb in comb_node_data:

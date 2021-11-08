@@ -1,3 +1,5 @@
+from typing import List
+
 from treelib import Tree
 
 from App.CombinationTree.LoadCombination import LoadCombination
@@ -10,11 +12,13 @@ def get_class_name(obj):
 
 class CombinationTree:
     def __init__(self, load_combination: LoadCombination):
+        print('Preparing Combination Tree...', flush=True)
         self.tree = Tree()
         self.name = load_combination.name
         self.load_combination = load_combination
         self.root = self.create_root(load_combination.name)
         self.create_tree()
+        print('Combination Tree created', flush=True)
 
     def create_root(self, name):
         return self.tree.create_node(name, data=NodeData(name))
@@ -36,9 +40,9 @@ class CombinationTree:
         return count
 
     def get_combination_data(self):
-        return self._translate_combinations_ids_to_node_data(self._get_combination_ids())
+        return self._replace_combination_ids_with_node_data(self._get_combination_ids())
 
-    def log(self):
+    def log_basic_info(self):
         print('##### COMBINATION TREE LOG #####')
         print('Created: {} combinations'.format(str(self.get_comb_count())))
         # print('Expected: {} combinations '.format(self.get_expected_comb_count()))
@@ -56,7 +60,7 @@ class CombinationTree:
 
         return comb_ids
 
-    def _translate_combinations_ids_to_node_data(self, comb_ids):
+    def _replace_combination_ids_with_node_data(self, comb_ids) -> List[List[NodeData]]:
         combs = []
         for ids in comb_ids:
             comb = []
@@ -70,14 +74,9 @@ class CombinationTree:
     def get_node(self, nid):
         return self.tree.get_node(nid)
 
-    def show(self):
-        self.tree.show()
-
-    def show_values(self):
+    def log_tree_structure(self):
+        print('Combination-Tree Structure:')
         self.tree.show(data_property='value')
-
-    def show_types(self):
-        self.tree.show(data_property='type')
 
     def _create_node(self, lc_f, parent):
         return self.tree.create_node(lc_f[0].name, parent=parent, data=NodeData(lc_f[0].name, lc_f[1], lc_f[0].type))

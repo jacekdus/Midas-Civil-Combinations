@@ -15,7 +15,7 @@ class MidasCombination:
         self.n_seistype = n_seistype
         self.load_case_collection: MidasLoadCaseCollection = midas_load_case_collection
 
-    def print_mct_command(self):
+    def print_mct_command_midas_combination(self):
         print("   NAME={}, {}, {}, {}, {}, {}, {}, {}, {}".format(self.name, self.kind, self.active, self.b_es,
                                                                   self.i_type, self.desc, self.i_serv_type,
                                                                   self.n_lcomtype, self.n_seistype))
