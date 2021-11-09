@@ -1,5 +1,14 @@
 # Midas-Civil-Combinations
 
+## Co ten skrypt robi
+
+Zadaniem skryptu jest pomoc przy tworzeniu kombinacji w programie Midas Civil. Skrypt pobiera dane wejściowe w postaci
+zadeklarowanych przypadków obciążenia, prekombinacji i kombinacji stworzonych w kodzie Python, które z kolei
+odpowiadają zasadom tworzenia kombinacji i prekombinacji ręcznie w programie Midas Civil. Utworzone kombinacje
+i prekombinacje zamienia na pojedyncze kombinacje złożone tylko z przypadków obciążenia z przeliczonymi współczynnikami 
+i wyrzuca tak przygotowana komendę do wklejenia bezpośrednio w programie Midas Civil (Zakładka -> Tools -> 
+MCT Command Shell)
+
 ## Jak uruchomić 
 
 Przed przystapieniem do uruchomienia programu, upewnij sie, że masz zainstalowaną najnowszą wersję [Pythona](https://www.python.org/downloads/). Jeżeli Python został wcześniej zainstalowany to może się okazać, że podczas instalacji nie została zaznaczona opcja:

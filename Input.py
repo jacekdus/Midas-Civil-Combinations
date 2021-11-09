@@ -1,19 +1,12 @@
-### INFORMACJE WSTEPNE
-#
-# Co ten skrypt robi:
-# Zadanie skryptu jest pomoc przy tworzeniu kombinacji w programie Midas Civil. Skrypt pobiera dane wejsciowe w postaci
-# zadeklarowanych przypadkow obciazenia, prekombinacji i kombinacji stworzonych w kodzie Python, ktore z koleji
-# odpowiadaja zasadom tworzenia kombinacji i prekombinacji recznie w programie Midas Civil. Utworzone kombinacje
-# i prekombinacje zamienia na proste przypadki, ktore nie maja juz w sobie zadnych prekombinacji i wyrzuca tak
-# przygotowana komende do wklejenia bezposrednio w programie Midas Civil (Zakladka -> Tools, opcja -> MCT Command Shell)
-#
+# INFORMACJE WSTEPNE
+
 # Polecane edytory kodu:
 #   - PyCharm - darmowe najlepsze narzedzie do edycji kodu w jezyku Python. Analizuje caly projekt i co w nim jest,
 #               podkresla bledy nie tylko syntaktyczne, ale potrafi tez duzo podpowiadac podczas pisania
 #   - Notepad++ - prosty edytor/viewer kodu, ktore przede wszystkim koloruje skladnie zeby byla bardziej czytelna
 #                 i sprawdza bledy syntaktyczne najlepsze do szybkiego podgladania kodu (do pisania ujdzie).
 
-#### INSTRUKCJA
+# INSTRUKCJA
 
 # 0. Tu sa linijki kodu, ktore importuja podstawowe klasy, z ktorych korzysta aplikacja. Tutaj nie nalezy nic zmieniac.
 
@@ -54,6 +47,9 @@ from App.CombinationTree.LoadCase import LoadCase
 #               [lm1_1, 1.35],
 #               [lm1_2, 1.35]
 #           ], envelope=True)
+
+
+# TUTAJ ZACZNIJ PISAC TWOJE PRZYPADKI KOMBINACJE
 
 g1 = LoadCase('G1', 'CS')
 g1_max = LoadCombination('G1_MAX', [[g1, 1.00]])
