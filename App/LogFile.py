@@ -32,7 +32,7 @@ class CombTreeLogFile(LogFile):
 
 
 class MctCommandLogFile(LogFile):
-    def __init__(self, file_name, midas_comb_list):
+    def __init__(self, file_name, midas_comb_list: List[MidasCombination]):
         LogFile.__init__(self, file_name)
         self.midas_comb_list: List[MidasCombination] = midas_comb_list
 
