@@ -37,6 +37,6 @@ Przykład w powershell:
 ## Rezultat
 
 Jeżeli aplikacja pomyślnie zakończyła swoje działanie, to w folderze z plikiem `Main.py`, powinny zostać utworzone pliki:
-- `mct_command.txt` - plik tekstowy z przygotowaną komendą do bezpośredniego wklejenia do programu Midas Civil 
+- `COMB_NAME_mct_command.txt` - plik tekstowy z przygotowaną komendą do bezpośredniego wklejenia do programu Midas Civil 
 w opcji MCT Command Shell.
-- `log.txt` - plik tekstowy zawierający raport z tworzenia kombinacji.
+- `COMB_NAME_log.txt` - plik tekstowy zawierający raport z tworzenia kombinacji.
