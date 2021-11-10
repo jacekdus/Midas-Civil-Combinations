@@ -68,11 +68,11 @@ g2_izol_max = LoadCombination('G2_NAWIERZ_MAX', [[g2_izol, 1.40]])
 g2_izol_min = LoadCombination('G2_NAWIERZ_MIN', [[g2_izol, 0.80]])
 
 g2_kapy_ch_comb = LoadCombination('G2_KAPY_CH_COMB', [[g2_kapy_max, 1.00], [g2_kapy_min, 1.00]], envelop=True)
-g2_nawierz_ch_comb = LoadCombination('G2_NAWIERZ_CH_COMB', [g2_nawierz_max, 1.00], [g2_nawierz_min, 1.00], envelop=True)
+g2_nawierz_ch_comb = LoadCombination('G2_NAWIERZ_CH_COMB', [[g2_nawierz_max, 1.00], [g2_nawierz_min, 1.00]], envelop=True)
 g2_izol_ch_comb = LoadCombination('G2_IZOL_CH_COMB', [[g2_izol_max, 1.00], [g2_izol_min, 1.00]], envelop=True)
 
 g2_kapy_str_comb = LoadCombination('G2_KAPY_STR_COMB', [[g2_kapy_max, 1.35], [g2_kapy_min, 1.00]], envelop=True)
-g2_nawierz_str_comb = LoadCombination('G2_NAWIERZ_STR_COMB', [[g2_nawierz_max, 1.35, g2_nawierz_min, 1.00]], envelop=True)
+g2_nawierz_str_comb = LoadCombination('G2_NAWIERZ_STR_COMB', [[g2_nawierz_max, 1.35], [g2_nawierz_min, 1.00]], envelop=True)
 g2_izol_str_comb = LoadCombination('G2_IZOL_STR_COMB', [[g2_izol_max, 1.35], [g2_izol_min, 1.00]], envelop=True)
 
 tendon_secondary = LoadCase('Tendon Secondary', 'CS')

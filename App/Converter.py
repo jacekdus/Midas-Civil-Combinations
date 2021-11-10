@@ -3,7 +3,6 @@ from typing import List
 from App.CombinationTree.NodeData import NodeData
 from App.Midas.MidasCombination import MidasCombination
 from App.Midas.MidasLoadCase import MidasLoadCase
-from App.Midas.MidasLoadCaseCollection import MidasLoadCaseCollection
 
 
 class Converter:
