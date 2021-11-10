@@ -5,7 +5,7 @@ from App.Midas.MidasLoadCase import MidasLoadCase
 
 class MidasLoadCaseCollection:
     def __init__(self, load_cases: List[MidasLoadCase]):
-        self.load_cases: List[MidasLoadCase] = load_cases
+        self.load_cases = load_cases
 
     def get_midas_print_list(self) -> list:
         print_list = []

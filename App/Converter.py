@@ -13,11 +13,11 @@ class Converter:
         midas_combs = []
         counter = 1
         for comb in comb_node_data:
-            midas_load_case_collection = MidasLoadCaseCollection([])
+            midas_load_cases = []
             for node_data in comb:
                 midas_load_case = MidasLoadCase(node_data.type, node_data.name, node_data.factor)
-                midas_load_case_collection.load_cases.append(midas_load_case)
-            midas_combination = MidasCombination(name + '_' + str(counter), midas_load_case_collection)
+                midas_load_cases.append(midas_load_case)
+            midas_combination = MidasCombination(name + '_' + str(counter), midas_load_cases)
             midas_combs.append(midas_combination)
             counter += 1
 
