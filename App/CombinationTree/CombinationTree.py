@@ -34,7 +34,7 @@ class CombinationTree:
         count = 1
         for lc_f in self.load_combination.load_cases:
             if lc_f[0].envelop:
-                length = len(lc_f[0].load_cases)
+                length = len(lc_f[0].midas_load_cases)
                 count *= length
 
         return count
