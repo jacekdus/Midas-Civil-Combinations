@@ -51,17 +51,29 @@ from App.CombinationTree.LoadCase import LoadCase
 
 # TUTAJ ZACZNIJ PISAC TWOJE PRZYPADKI KOMBINACJE
 
-g1 = LoadCase('G1')
-g2 = LoadCase('G2')
+g = LoadCase('g')
+temp_normal_plus = LoadCase('temp_normal_plus')
+temp_gradient_plus = LoadCase('temp_gradient_plus')
 
-lm1_1 = LoadCase('LM1_1', 'MV')
-lm1_2 = LoadCase('LM1_2', 'MV')
+temp_1 = LoadCombination('temp_1', [
+    [temp_normal_plus, 0.35],
+    [temp_gradient_plus, 1.00]
+])
 
-lm1 = LoadCombination('LM1', [[lm1_1, 1.00], [lm1_2, 1.00]], envelop=True)
+temp_2 = LoadCombination('temp_2', [
+    [temp_normal_plus, 1.00],
+    [temp_gradient_plus, 0.35]
+])
 
-str_comb = LoadCombination('STR', [[g1, 1.35], [g2, 1.35], [lm1, 1.35]])
+temp = LoadCombination('temp', [
+    [temp_1, 1.00],
+    [temp_2, 1.00]
+], envelop=True)
 
 # 2. Kombinacja ostateczna
 #   Kombinacja podstawowa main_comb (nie zmieniac nazwy zmiennej)
 
-main_comb = str_comb
+main_comb = LoadCombination('main', [
+    [g, 1.00],
+    [temp, 0.60]
+])

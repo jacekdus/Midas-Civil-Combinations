@@ -6,10 +6,12 @@ from App.Converter import Converter
 from App.GUI.Main import GUI
 from App.LogFile import CombTreeLogFile, MctCommandLogFile
 from App.Midas.MidasCombination import MidasCombination
+from App.Utils import fix_main_comb
 
 
 class Application:
     def __init__(self, main_load_combination: LoadCombination):
+        fix_main_comb(main_load_combination)
         self.comb_tree = CombinationTree(main_load_combination)
         self.comb_name = main_load_combination.name
 

@@ -130,13 +130,14 @@ class MctCommandLogFile(LogFile):
     @staticmethod
     def _get_effective_list(midas_load_cases: List[MidasLoadCase]) -> List[MidasLoadCase]:
         effective_list = []
-        factor = 1.0
+        # factor = 1.0
         for lc in midas_load_cases:
             if lc.anal == 'CB':
-                factor *= lc.fact
+                # factor *= lc.fact
+                pass
             else:
-                lc.fact *= factor
+                # lc.fact *= factor
                 effective_list.append(lc)
-                factor = 1.0
+                # factor = 1.0
 
         return effective_list
