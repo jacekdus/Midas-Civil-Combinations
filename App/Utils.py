@@ -1,3 +1,4 @@
+import copy
 import os
 
 from App.CombinationTree.LoadCombination import LoadCombination
@@ -22,9 +23,13 @@ def merge_mct_command_files():
     print('Merge completed.')
 
 
-def fix_main_comb(main_comb: LoadCombination):
+def get_fixed_copy_of_main_comb_with_transferred_down_factors(main_comb: LoadCombination):
+    main_comb = copy.deepcopy(main_comb)
+
     for lc_f in main_comb.load_cases:
         _fix_next_comb(lc_f)
+
+    return main_comb
 
 
 def _fix_next_comb(lc_f):
