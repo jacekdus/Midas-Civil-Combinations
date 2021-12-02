@@ -7,10 +7,12 @@ from App.GUI.Main import GUI
 from App.LogFile import CombTreeLogFile, MctCommandLogFile
 from App.Midas.MidasCombination import MidasCombination
 from App.Utils import fix_main_comb
+from App.Validator import Validator
 
 
 class Application:
     def __init__(self, main_load_combination: LoadCombination):
+        self._validate_main_comb(main_load_combination)
         fix_main_comb(main_load_combination)
         self.comb_tree = CombinationTree(main_load_combination)
         self.comb_name = main_load_combination.name
@@ -31,3 +33,8 @@ class Application:
     @staticmethod
     def launch_gui():
         GUI()
+
+    @staticmethod
+    def _validate_main_comb(main_load_combination: LoadCombination):
+        validator = Validator()
+        validator.validate_comb(main_load_combination)
