@@ -2,7 +2,7 @@ import sys
 from typing import List
 
 from App.CombinationTree.CombinationTree import CombinationTree
-from App.Config import MCT_COMMAND_COMB_LIMIT, MCT_COMMAND_FILE_PATH, LOG_FILE_PATH
+from App.Config import MCT_COMMAND_COMB_LIMIT, MCT_COMMAND_FILE_PATH, LOG_FILE_PATH, MCT_COMMAND_FILE_SUFFIX
 from App.Midas.MidasCombination import MidasCombination
 from App.Midas.MidasLoadCase import MidasLoadCase
 
@@ -35,7 +35,7 @@ class CombTreeLogFile(LogFile):
 
 class MctCommandLogFile(LogFile):
     def __init__(self, comb_name, midas_comb_list: List[MidasCombination]):
-        LogFile.__init__(self, MCT_COMMAND_FILE_PATH / '{}_mct_command.txt'.format(comb_name))
+        LogFile.__init__(self, MCT_COMMAND_FILE_PATH / '{}_{}'.format(comb_name, MCT_COMMAND_FILE_SUFFIX))
         self.comb_name = comb_name
         self.midas_comb_list: List[MidasCombination] = midas_comb_list
 
