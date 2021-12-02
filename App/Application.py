@@ -14,7 +14,7 @@ class Application:
     def __init__(self, main_load_combination: LoadCombination):
         self._validate_main_comb(main_load_combination)
         self.main_load_combination = get_fixed_copy_of_main_comb_with_transferred_down_factors(main_load_combination)
-        self.comb_tree = CombinationTree(main_load_combination)
+        self.comb_tree = CombinationTree(self.main_load_combination)
 
     def _get_prepared_data(self) -> List[MidasCombination]:
         comb_data = self.comb_tree.get_combination_data()

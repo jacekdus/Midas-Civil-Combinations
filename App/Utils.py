@@ -27,15 +27,19 @@ def get_fixed_copy_of_main_comb_with_transferred_down_factors(main_comb: LoadCom
     main_comb = copy.deepcopy(main_comb)
 
     for lc_f in main_comb.load_cases:
-        _fix_next_comb(lc_f)
+        _transfer_factor_to_next(lc_f)
 
     return main_comb
 
 
-def _fix_next_comb(lc_f):
+def _transfer_factor_to_next(lc_f):
     if lc_f[0].__class__.__name__ == 'LoadCase':
         pass
     else:
-        for lc_f_2 in lc_f[0].load_cases:
+        for idx, lc_f_2 in enumerate(lc_f[0].load_cases):
+            # Override reference with new [LoadCase, factor]
+            lc_f_2 = lc_f[0].load_cases[idx] = copy.deepcopy(lc_f_2)
+
+            # Transfer factor to [LoadCase, factor] list
             lc_f_2[1] *= lc_f[1]
-            _fix_next_comb(lc_f_2)
+            _transfer_factor_to_next(lc_f_2)
