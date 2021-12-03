@@ -26,7 +26,8 @@ def merge_mct_command_files():
 def get_fixed_copy_of_main_comb_with_transferred_down_factors(main_comb: LoadCombination):
     main_comb = copy.deepcopy(main_comb)
 
-    for lc_f in main_comb.load_cases:
+    for idx, lc_f in enumerate(main_comb.load_cases):
+        lc_f = main_comb.load_cases[idx] = copy.deepcopy(lc_f)
         _transfer_factor_to_next(lc_f)
 
     return main_comb
@@ -41,5 +42,6 @@ def _transfer_factor_to_next(lc_f):
             lc_f_2 = lc_f[0].load_cases[idx] = copy.deepcopy(lc_f_2)
 
             # Transfer factor to [LoadCase, factor] list
+            # print(str(lc_f_2[0].name) + ': ' + str(lc_f_2[1]) + ' * ' + str(lc_f[1]) + ' = ' + str(lc_f_2[1] * lc_f[1]))
             lc_f_2[1] *= lc_f[1]
             _transfer_factor_to_next(lc_f_2)
