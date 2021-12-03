@@ -1,0 +1,21 @@
+*LOADCOMB    ; Combinations
+; NAME=NAME, KIND, ACTIVE, bES, iTYPE, DESC, iSERV-TYPE, nLCOMTYPE, nSEISTYPE   ; line 1
+;      ANAL1, LCNAME1, FACT1, ...                                               ; from line 2
+   NAME=Q_ch_komb_1, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        MV, LM1+piesi, 1.0, ST, temp+, 0.21, ST, gradient temp+, 0.6
+   NAME=Q_ch_komb_2, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        MV, LM1+piesi, 1.0, ST, temp+, 0.21, ST, gradient temp-, 0.6
+   NAME=Q_ch_komb_3, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        MV, LM1+piesi, 1.0, ST, temp-, 0.21, ST, gradient temp+, 0.6
+   NAME=Q_ch_komb_4, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        MV, LM1+piesi, 1.0, ST, temp-, 0.21, ST, gradient temp-, 0.6
+   NAME=Q_ch_komb_5, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        MV, LM2, 1.0, ST, temp+, 0.21, ST, gradient temp+, 0.6
+   NAME=Q_ch_komb_6, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        MV, LM2, 1.0, ST, temp+, 0.21, ST, gradient temp-, 0.6
+   NAME=Q_ch_komb_7, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        MV, LM2, 1.0, ST, temp-, 0.21, ST, gradient temp+, 0.6
+   NAME=Q_ch_komb_8, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        MV, LM2, 1.0, ST, temp-, 0.21, ST, gradient temp-, 0.6
+   NAME=Q_ch_komb_CB_0, GEN, ACTIVE, 0, 0, , 0, 0, 0
+        CB, Q_ch_komb_1, 1.0, CB, Q_ch_komb_2, 1.0, CB, Q_ch_komb_3, 1.0, CB, Q_ch_komb_4, 1.0, CB, Q_ch_komb_5, 1.0, CB, Q_ch_komb_6, 1.0, CB, Q_ch_komb_7, 1.0, CB, Q_ch_komb_8, 1.0

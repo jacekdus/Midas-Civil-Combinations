@@ -11,14 +11,17 @@ def get_class_name(obj):
 
 
 class CombinationTree:
-    def __init__(self, load_combination: LoadCombination):
-        print('Preparing Combination Tree...', flush=True)
+    def __init__(self, load_combination: LoadCombination, config):
+        self.config = config
+        if self.config.PRINT_MESSAGES:
+            print('Preparing Combination Tree...', flush=True)
         self.tree = Tree()
         self.name = load_combination.name
         self.load_combination = load_combination
         self.root = self.create_root(load_combination.name)
         self.create_tree()
-        print('Combination Tree created', flush=True)
+        if self.config.PRINT_MESSAGES:
+            print('Combination Tree created', flush=True)
 
     def create_root(self, name):
         return self.tree.create_node(name, data=NodeData(name))

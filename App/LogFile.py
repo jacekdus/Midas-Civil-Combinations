@@ -2,7 +2,7 @@ import sys
 from typing import List
 
 from App.CombinationTree.CombinationTree import CombinationTree
-from App.Config import MCT_COMMAND_COMB_LIMIT, MCT_COMMAND_FILE_PATH, LOG_FILE_PATH, MCT_COMMAND_FILE_SUFFIX
+from App.Config import Config
 from App.Midas.MidasCombination import MidasCombination
 from App.Midas.MidasLoadCase import MidasLoadCase
 
@@ -14,12 +14,14 @@ class LogFile:
 
 
 class CombTreeLogFile(LogFile):
-    def __init__(self, file_path, comb_tree):
-        LogFile.__init__(self, LOG_FILE_PATH / '{}_log.txt'.format(file_path))
+    def __init__(self, file_path, comb_tree, config: Config):
+        self.config = config
+        LogFile.__init__(self, config.LOG_FILE_PATH / '{}_log.txt'.format(file_path))
         self.comb_tree: CombinationTree = comb_tree
 
     def create(self):
-        print('Preparing Combination-Tree log file...', flush=True)
+        if self.config.PRINT_MESSAGES:
+            print('Preparing Combination-Tree log file...', flush=True)
         f = open(self.file_path, 'w', encoding=self.encoding)
         original_stdout = sys.stdout  # Save a reference to the original standard output
 
@@ -30,17 +32,21 @@ class CombTreeLogFile(LogFile):
 
         sys.stdout = original_stdout  # Reset the standard output to its original value
         f.close()
-        print('Combination-Tree log file successfully created.', flush=True)
+        if self.config.PRINT_MESSAGES:
+            print('Combination-Tree log file successfully created.', flush=True)
 
 
 class MctCommandLogFile(LogFile):
-    def __init__(self, comb_name, midas_comb_list: List[MidasCombination]):
-        LogFile.__init__(self, MCT_COMMAND_FILE_PATH / '{}_{}'.format(comb_name, MCT_COMMAND_FILE_SUFFIX))
+    def __init__(self, comb_name, midas_comb_list: List[MidasCombination], config: Config):
+        self.config = config
+        LogFile.__init__(self, self.config.MCT_COMMAND_FILE_PATH / '{}_{}'.format(comb_name,
+                                                                                  self.config.MCT_COMMAND_FILE_SUFFIX))
         self.comb_name = comb_name
         self.midas_comb_list: List[MidasCombination] = midas_comb_list
 
     def create(self):
-        print('Preparing MCT Command log file...', flush=True)
+        if self.config.PRINT_MESSAGES:
+            print('Preparing MCT Command log file...', flush=True)
         f = open(self.file_path, 'w', encoding=self.encoding)
         original_stdout = sys.stdout  # Save a reference to the original standard output
 
@@ -51,11 +57,14 @@ class MctCommandLogFile(LogFile):
         for midas_comb in self.midas_comb_list:
             self._print_mct_command_midas_combination_without_cb(midas_comb)
 
-        self._print_indirect_combinations()
+        if self.config.CREATE_INDIRECT_COMBINATIONS:
+            self._print_indirect_combinations()
 
         sys.stdout = original_stdout  # Reset the standard output to its original value
         f.close()
-        print('MCT Command log file successfully created.', flush=True)
+
+        if self.config.PRINT_MESSAGES:
+            print('MCT Command log file successfully created.', flush=True)
 
     def _print_indirect_combinations(self):
         new_midas_combs: List[MidasCombination] = self._prepare_indirect_combinations()
@@ -69,7 +78,7 @@ class MctCommandLogFile(LogFile):
         new_midas_comb = MidasCombination('', midas_load_cases=[])
         counter = 1
         for midas_comb in self.midas_comb_list:
-            if counter < MCT_COMMAND_COMB_LIMIT:
+            if counter < self.config.MCT_COMMAND_COMB_LIMIT:
                 midas_load_case = MidasLoadCase('CB', midas_comb.name, 1.00)
                 new_midas_comb.midas_load_cases.append(midas_load_case)
                 counter += 1

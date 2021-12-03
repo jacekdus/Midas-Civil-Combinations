@@ -1,5 +1,6 @@
 from App.CombinationTree.LoadCase import LoadCase
 from App.CombinationTree.LoadCombination import LoadCombination
+from App.Config import Config
 
 
 class Validator:
