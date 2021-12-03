@@ -17,5 +17,5 @@
         MV, LM2, 1.0, ST, temp-, 0.21, ST, gradient temp+, 0.6
    NAME=Q_ch_komb_8, GEN, ACTIVE, 0, 0, , 0, 0, 0
         MV, LM2, 1.0, ST, temp-, 0.21, ST, gradient temp-, 0.6
-   NAME=Q_ch_komb_CB_0, GEN, ACTIVE, 0, 0, , 0, 0, 0
+   NAME=Q_ch_komb_CB_0, GEN, ACTIVE, 0, 1, , 0, 0, 0
         CB, Q_ch_komb_1, 1.0, CB, Q_ch_komb_2, 1.0, CB, Q_ch_komb_3, 1.0, CB, Q_ch_komb_4, 1.0, CB, Q_ch_komb_5, 1.0, CB, Q_ch_komb_6, 1.0, CB, Q_ch_komb_7, 1.0, CB, Q_ch_komb_8, 1.0

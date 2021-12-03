@@ -33,5 +33,5 @@
         SM, A+B+C, 1.2, CS, cw, 1.0, CS, Tendon Primary, 1.0, CS, Tendon Secondary, 1.0, CS, Creep Secondary, 1.0, CS, Shrinkage Secondary, 1.0, CS, dg, 1.0, CS, dg_izolacja, 0.8, CS, dg_nawierzchnia, 0.8
    NAME=G_obl_komb _16, GEN, ACTIVE, 0, 0, , 0, 0, 0
         SM, A+B+C, 1.2, CS, cw, 1.0, CS, Tendon Primary, 1.0, CS, Tendon Secondary, 1.0, CS, Creep Secondary, 1.0, CS, Shrinkage Secondary, 1.0, CS, dg, 1.0, CS, dg_izolacja, 0.8, CS, dg_nawierzchnia, 1.4
-   NAME=G_obl_komb _CB_0, GEN, ACTIVE, 0, 0, , 0, 0, 0
+   NAME=G_obl_komb _CB_0, GEN, ACTIVE, 0, 1, , 0, 0, 0
         CB, G_obl_komb _1, 1.0, CB, G_obl_komb _2, 1.0, CB, G_obl_komb _3, 1.0, CB, G_obl_komb _4, 1.0, CB, G_obl_komb _5, 1.0, CB, G_obl_komb _6, 1.0, CB, G_obl_komb _7, 1.0, CB, G_obl_komb _8, 1.0, CB, G_obl_komb _9, 1.0, CB, G_obl_komb _10, 1.0, CB, G_obl_komb _11, 1.0, CB, G_obl_komb _12, 1.0, CB, G_obl_komb _13, 1.0, CB, G_obl_komb _14, 1.0, CB, G_obl_komb _15, 1.0, CB, G_obl_komb _16, 1.0

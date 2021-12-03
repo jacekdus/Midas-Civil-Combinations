@@ -75,7 +75,7 @@ class MctCommandLogFile(LogFile):
 
     def _prepare_indirect_combinations(self) -> List[MidasCombination]:
         indirect_midas_combs = []
-        new_midas_comb = MidasCombination('', midas_load_cases=[])
+        new_midas_comb = MidasCombination('', midas_load_cases=[], i_type=1)
         counter = 1
         for midas_comb in self.midas_comb_list:
             if counter < self.config.MCT_COMMAND_COMB_LIMIT:
