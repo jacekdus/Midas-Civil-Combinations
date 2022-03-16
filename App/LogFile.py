@@ -1,10 +1,14 @@
-import sys
+import sys, os
 from typing import List
 
 from App.CombinationTree.CombinationTree import CombinationTree
 from App.Config import Config
 from App.Midas.MidasCombination import MidasCombination
 from App.Midas.MidasLoadCase import MidasLoadCase
+
+
+def create_directory(directory):
+    os.makedirs(directory)
 
 
 class LogFile:
@@ -14,9 +18,9 @@ class LogFile:
 
 
 class CombTreeLogFile(LogFile):
-    def __init__(self, file_path, comb_tree, config: Config):
+    def __init__(self, file_path, comb_tree, config: Config, folder_name=None):
         self.config = config
-        LogFile.__init__(self, config.LOG_FILE_PATH / '{}_log.txt'.format(file_path))
+        LogFile.__init__(self, self.create_path(file_path, folder_name))
         self.comb_tree: CombinationTree = comb_tree
 
     def create(self):
@@ -35,12 +39,20 @@ class CombTreeLogFile(LogFile):
         if self.config.PRINT_MESSAGES:
             print('Combination-Tree log file successfully created.', flush=True)
 
+    def create_path(self, file_path, folder_name=None):
+        if folder_name:
+            if not os.path.exists(self.config.LOG_FILE_PATH / folder_name):
+                create_directory(self.config.LOG_FILE_PATH / folder_name)
+
+            return self.config.LOG_FILE_PATH / folder_name / '{}_log.txt'.format(file_path)
+        else:
+            return self.config.LOG_FILE_PATH / '{}_log.txt'.format(file_path)
+
 
 class MctCommandLogFile(LogFile):
-    def __init__(self, comb_name, midas_comb_list: List[MidasCombination], config: Config):
+    def __init__(self, comb_name, midas_comb_list: List[MidasCombination], config: Config, folder_name):
         self.config = config
-        LogFile.__init__(self, self.config.MCT_COMMAND_FILE_PATH / '{}_{}'.format(comb_name,
-                                                                                  self.config.MCT_COMMAND_FILE_SUFFIX))
+        LogFile.__init__(self, self.create_path(comb_name, folder_name))
         self.comb_name = comb_name
         self.midas_comb_list: List[MidasCombination] = midas_comb_list
 
@@ -65,6 +77,15 @@ class MctCommandLogFile(LogFile):
 
         if self.config.PRINT_MESSAGES:
             print('MCT Command log file successfully created.', flush=True)
+
+    def create_path(self, comb_name, folder_name=None):
+        if folder_name:
+            if not os.path.exists(self.config.MCT_COMMAND_FILE_PATH / folder_name):
+                create_directory(self.config.MCT_COMMAND_FILE_PATH / folder_name)
+
+            return self.config.MCT_COMMAND_FILE_PATH / folder_name / '{}_{}'.format(comb_name, self.config.MCT_COMMAND_FILE_SUFFIX)
+        else:
+            return self.config.MCT_COMMAND_FILE_PATH / '{}_{}'.format(comb_name, self.config.MCT_COMMAND_FILE_SUFFIX)
 
     def _print_indirect_combinations(self):
         new_midas_combs: List[MidasCombination] = self._prepare_indirect_combinations()

@@ -23,12 +23,12 @@ class Application:
 
         return Converter.comb_node_data_to_midas_combination(comb_data, self.comb_tree.name, self.config)
 
-    def create_mct_command_file(self):
-        log_file = MctCommandLogFile(self.main_load_combination.name, self._get_prepared_data(), self.config)
+    def create_mct_command_file(self, folder_name=None):
+        log_file = MctCommandLogFile(self.main_load_combination.name, self._get_prepared_data(), self.config, folder_name)
         log_file.create()
 
-    def create_log_file(self):
-        log_file = CombTreeLogFile(self.main_load_combination.name, self.comb_tree, self.config)
+    def create_log_file(self, folder_name=None):
+        log_file = CombTreeLogFile(self.main_load_combination.name, self.comb_tree, self.config, folder_name)
         log_file.create()
 
     @staticmethod
