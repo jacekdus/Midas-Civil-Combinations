@@ -5,6 +5,7 @@ from App.CombinationTree.CombinationTree import CombinationTree
 from App.Config import Config
 from App.Midas.MidasCombination import MidasCombination
 from App.Midas.MidasLoadCase import MidasLoadCase
+from App.Options import Options
 
 
 def create_directory(directory):
@@ -50,8 +51,10 @@ class CombTreeLogFile(LogFile):
 
 
 class MctCommandLogFile(LogFile):
-    def __init__(self, comb_name, midas_comb_list: List[MidasCombination], config: Config, folder_name):
+    def __init__(self, comb_name, midas_comb_list: List[MidasCombination], config: Config, options: Options,
+                 folder_name):
         self.config = config
+        self.options = options
         LogFile.__init__(self, self.create_path(comb_name, folder_name))
         self.comb_name = comb_name
         self.midas_comb_list: List[MidasCombination] = midas_comb_list
@@ -83,7 +86,8 @@ class MctCommandLogFile(LogFile):
             if not os.path.exists(self.config.MCT_COMMAND_FILE_PATH / folder_name):
                 create_directory(self.config.MCT_COMMAND_FILE_PATH / folder_name)
 
-            return self.config.MCT_COMMAND_FILE_PATH / folder_name / '{}_{}'.format(comb_name, self.config.MCT_COMMAND_FILE_SUFFIX)
+            return self.config.MCT_COMMAND_FILE_PATH / folder_name / '{}_{}'.format(
+                comb_name, self.config.MCT_COMMAND_FILE_SUFFIX)
         else:
             return self.config.MCT_COMMAND_FILE_PATH / '{}_{}'.format(comb_name, self.config.MCT_COMMAND_FILE_SUFFIX)
 
@@ -131,10 +135,9 @@ class MctCommandLogFile(LogFile):
             print_list += self._get_load_case_props_list(load_case)
         print(*print_list, sep=', ')
 
-    @staticmethod
-    def _print_mct_command_basic_combination_info(mc: MidasCombination):
-        print("   NAME={}, {}, {}, {}, {}, {}, {}, {}, {}".format(mc.name, mc.kind, mc.active, mc.b_es,
-                                                                  mc.i_type, mc.desc, mc.i_serv_type,
+    def _print_mct_command_basic_combination_info(self, mc: MidasCombination):
+        print("   NAME={}, {}, {}, {}, {}, {}, {}, {}, {}".format(mc.name, self.options.kind, self.options.active,
+                                                                  mc.b_es, mc.i_type, mc.desc, self.options.i_serv_type,
                                                                   mc.n_lcomtype, mc.n_seistype))
 
     def _get_midas_print_list(self, midas_load_cases: List[MidasLoadCase]) -> List[MidasLoadCase]:
