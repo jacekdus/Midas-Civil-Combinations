@@ -1,23 +1,26 @@
 import copy
 import os
 
+
 from App.CombinationTree.LoadCombination import LoadCombination
 from App.Config import Config
 
 
-def merge_mct_command_files(config: Config = Config()):
-    if os.path.exists(config.MCT_COMMAND_SUMMARY_FILE_PATH):
-        os.remove(config.MCT_COMMAND_SUMMARY_FILE_PATH)
+def merge_mct_command_files(directory=Config.MCT_COMMAND_FILE_DIRECTORY, config: Config = Config()):
+    summary_file_path = directory / '_SUMMARY.txt'
+
+    if os.path.exists(summary_file_path):
+        os.remove(summary_file_path)
         print('Erased old SUMMARY.txt file')
 
     print('Merging mct command files...')
-    for file in os.listdir(config.MCT_COMMAND_FILE_PATH):
+    for file in os.listdir(directory):
         if file.endswith(config.MCT_COMMAND_FILE_SUFFIX):
-            file_path = config.MCT_COMMAND_FILE_PATH / file
+            file_path = directory / file
             if os.path.isfile(file_path):
                 with open(file_path, 'r') as f1:
                     for line in f1:
-                        with open(config.MCT_COMMAND_SUMMARY_FILE_PATH, 'a') as f2:
+                        with open(summary_file_path, 'a') as f2:
                             f2.write(line)
 
     print('Merge completed.')

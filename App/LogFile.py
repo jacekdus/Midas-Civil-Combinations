@@ -83,13 +83,13 @@ class MctCommandLogFile(LogFile):
 
     def create_path(self, comb_name, folder_name=None):
         if folder_name:
-            if not os.path.exists(self.config.MCT_COMMAND_FILE_PATH / folder_name):
-                create_directory(self.config.MCT_COMMAND_FILE_PATH / folder_name)
+            if not os.path.exists(self.config.MCT_COMMAND_FILE_DIRECTORY / folder_name):
+                create_directory(self.config.MCT_COMMAND_FILE_DIRECTORY / folder_name)
 
-            return self.config.MCT_COMMAND_FILE_PATH / folder_name / '{}_{}'.format(
+            return self.config.MCT_COMMAND_FILE_DIRECTORY / folder_name / '{}_{}'.format(
                 comb_name, self.config.MCT_COMMAND_FILE_SUFFIX)
         else:
-            return self.config.MCT_COMMAND_FILE_PATH / '{}_{}'.format(comb_name, self.config.MCT_COMMAND_FILE_SUFFIX)
+            return self.config.MCT_COMMAND_FILE_DIRECTORY / '{}_{}'.format(comb_name, self.config.MCT_COMMAND_FILE_SUFFIX)
 
     def _print_indirect_combinations(self):
         new_midas_combs: List[MidasCombination] = self._prepare_indirect_combinations()
@@ -128,7 +128,7 @@ class MctCommandLogFile(LogFile):
         print(*self._get_midas_print_list(midas_comb.midas_load_cases), sep=', ')
 
     def _print_mct_command_midas_combination_with_cb(self, midas_comb: MidasCombination):
-        self._print_mct_command_basic_combination_info(midas_comb)
+        self._print_mct_command_basic_combination_info_indirect(midas_comb)
         print(end='        ')
         print_list = []
         for load_case in midas_comb.midas_load_cases:
@@ -138,6 +138,13 @@ class MctCommandLogFile(LogFile):
     def _print_mct_command_basic_combination_info(self, mc: MidasCombination):
         print("   NAME={}, {}, {}, {}, {}, {}, {}, {}, {}".format(mc.name, self.options.kind, self.options.active,
                                                                   mc.b_es, mc.i_type, mc.desc, self.options.i_serv_type,
+                                                                  mc.n_lcomtype, mc.n_seistype))
+
+    def _print_mct_command_basic_combination_info_indirect(self, mc: MidasCombination):
+        print("   NAME={}, {}, {}, {}, {}, {}, {}, {}, {}".format(mc.name, self.options.indirect_kind,
+                                                                  self.options.indirect_active,
+                                                                  mc.b_es, mc.i_type, mc.desc,
+                                                                  self.options.indirect_i_serv_type,
                                                                   mc.n_lcomtype, mc.n_seistype))
 
     def _get_midas_print_list(self, midas_load_cases: List[MidasLoadCase]) -> List[MidasLoadCase]:

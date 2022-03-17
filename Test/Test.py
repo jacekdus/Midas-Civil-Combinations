@@ -13,7 +13,7 @@ subjects = [
 ]
 
 config = Config()
-config.MCT_COMMAND_FILE_PATH = Path(__file__).parent / 'Output'
+config.MCT_COMMAND_FILE_DIRECTORY = Path(__file__).parent / 'Output'
 config.PRINT_MESSAGES = False
 
 
@@ -28,11 +28,11 @@ def test():
 def _compare_prepared_mct_command_files():
     messages = []
 
-    for file in os.listdir(config.MCT_COMMAND_FILE_PATH):
+    for file in os.listdir(config.MCT_COMMAND_FILE_DIRECTORY):
         if file.endswith(config.MCT_COMMAND_FILE_SUFFIX):
 
-            output_file_path = config.MCT_COMMAND_FILE_PATH / file
-            output_confirmed_file_path = config.MCT_COMMAND_FILE_PATH.parent / 'Output_confirmed' / file
+            output_file_path = config.MCT_COMMAND_FILE_DIRECTORY / file
+            output_confirmed_file_path = config.MCT_COMMAND_FILE_DIRECTORY.parent / 'Output_confirmed' / file
 
             if not filecmp.cmp(output_file_path, output_confirmed_file_path):
                 messages.append('Test failed for: ' + output_file_path.name)
