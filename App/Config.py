@@ -12,5 +12,4 @@ class Config:
     MCT_COMMAND_COMB_LIMIT = 150
 
     # Flags
-    CREATE_INDIRECT_COMBINATIONS = True
     PRINT_MESSAGES = True

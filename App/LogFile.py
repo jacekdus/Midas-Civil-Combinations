@@ -72,7 +72,7 @@ class MctCommandLogFile(LogFile):
         for midas_comb in self.midas_comb_list:
             self._print_mct_command_midas_combination_without_cb(midas_comb)
 
-        if self.config.CREATE_INDIRECT_COMBINATIONS:
+        if self.options.create_indirect_combs:
             self._print_indirect_combinations()
 
         sys.stdout = original_stdout  # Reset the standard output to its original value

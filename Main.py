@@ -10,7 +10,7 @@ from App.Utils import merge_mct_command_files
 
 # Test.test()
 
-app = Application(main_comb, options=Options(kind='CONC', active='SERVICE', i_serv_type='CH'))
+app = Application(main_comb, options=Options(kind='CONC', active='SERVICE', i_serv_type='CH', create_indirect_combs=False))
 
 app.create_mct_command_file(folder_name="WD-555/UN")
 app.create_log_file()
