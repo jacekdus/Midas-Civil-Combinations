@@ -109,7 +109,7 @@ class MctCommandLogFile(LogFile):
                 counter += 1
             else:
                 indirect_midas_combs.append(new_midas_comb)
-                new_midas_comb = MidasCombination(''.format(self.comb_name, counter), midas_load_cases=[])
+                new_midas_comb = MidasCombination(''.format(self.comb_name, counter), midas_load_cases=[], i_type=1)
                 counter = 1
 
         indirect_midas_combs.append(new_midas_comb)
