@@ -104,7 +104,11 @@ class MctCommandLogFile(LogFile):
         counter = 1
         for midas_comb in self.midas_comb_list:
             if counter < self.config.MCT_COMMAND_COMB_LIMIT:
-                midas_load_case = MidasLoadCase('CB', midas_comb.name, 1.00)
+                if self.options.indirect_kind == 'CONC':
+                    kind = 'CBC'
+                else:
+                    kind = 'CB'
+                midas_load_case = MidasLoadCase(kind, midas_comb.name, 1.00)
                 new_midas_comb.midas_load_cases.append(midas_load_case)
                 counter += 1
             else:
